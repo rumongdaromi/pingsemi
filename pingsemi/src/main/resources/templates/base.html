@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+
+.upbar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 20px;
+  height: 70px;
+  background-color: white;
+  position: relative;
+}
+
+.left-logo {
+  font-size: 24px;
+  font-weight: bold;
+  flex: 1;
+}
+
+.center-menu {
+  display: flex;
+  list-style: none;
+  gap: 30px;
+  margin: 0;
+  padding: 0;
+  flex: 2;
+  justify-content: center;
+}
+
+.center-menu li a {
+  text-decoration: none;
+  font-weight: bold;
+  color: black;
+}
+
+.search-box {
+  display: flex;
+  align-items: center;
+  background: #f1f1f1;
+  border-radius: 20px;
+  padding: 5px 10px;
+  flex: 1;
+  justify-content: flex-end;
+}
+
+.search-txt {
+  border: none;
+  background: transparent;
+  outline: none;
+  padding: 5px;
+  width: 160px;
+}
+
+.search-btn {
+  border: none;
+  background: none;
+  cursor: pointer;
+  font-size: 18px;
+}
+
+/* 햄버거 메뉴 기본은 숨김 */
+.hamburger {
+  display: flex;
+  margin-left: 30px;
+  font-size: 26px;
+  cursor: pointer;
+}
+
+/* 모바일 메뉴 숨기기 */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -290px; /* 처음에 오른쪽 바깥에 있음 */
+  width: 250px;
+  height: 100%;
+  background-color: white;
+  box-shadow: -2px 0 5px rgba(0,0,0,0.2);
+  padding: 60px 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  transition: right 0.3s ease;
+}
+
+.mobile-menu a {
+  text-decoration: none;
+  color: #000;
+  font-weight: bold;
+}
+
+/* 메뉴 열렸을 때 */
+.mobile-menu.open {
+  right: 0;
+}
+
+/* 반응형 처리 */
+@media (max-width: 768px) {
+  .center-menu,
+  .search-box {
+    display: none;
+  }
+
+  .hamburger {
+    display: block;
+  }
+}
+
+</style>
+<body>
+    <div class="upbar">
+        <div class="left-logo">PINGSEMI</div>
+
+        <ul class="center-menu">
+            <li><a href="#company">COMPANY</a></li>
+            <li><a href="business">BUSINESS</a></li>
+            <li><a href="contact">CONTACT US</a></li>
+        </ul>
+        
+        <form class="search-box" action="" method="get">
+            <input class="search-txt" type="text" name="" placeholder="입력">
+            <button class="search-btn" type="submit">🔍</button>
+        </form>
+
+        
+        <div class="hamburger" id="hamburger">☰</div>
+
+        <div class="mobile-menu" id="mobile-menu">
+            <ul>
+                <li><a href="#company">COMPANY</a></li>
+                <li><a href="business">BUSINESS</a></li>
+                <li><a href="contact">CONTACT US</a></li>
+            </ul>
+
+            <form class="search-box" action="" method="get">
+                <input class="search-txt" type="text" name="" placeholder="입력">
+                <button class="search-btn" type="submit">🔍</button>
+            </form>
+        </div>
+
+    </div>
+</body>
+
+<script>
+    const hamburger = document.getElementById("hamburger");
+    const mobileMenu = document.getElementById("mobile-menu");
+
+    // 햄버거 클릭 시 메뉴 열기/닫기
+    hamburger.addEventListener("click", () => {
+        event.stopPropagation(); // 이벤트 버블링 막기 (문서 클릭 감지 안 되게)
+        mobileMenu.classList.toggle("open");
+    });
+
+    document.addEventListener("click", () => {
+        if (mobileMenu.classList.contains("open")){
+            mobileMenu.classList.remove("open");
+        }
+    } );
+</script>
+
+
+</html>
